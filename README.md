@@ -2,7 +2,7 @@
 
 # ShineChart 基于Swift4.0 轻量级图标框架
 
-<img width="500" height="500" src="http://g.recordit.co/QwgYcD6hJd.gif"/>
+<img width="375" height="812" src="http://g.recordit.co/QwgYcD6hJd.gif"/>
 
 
 ### 饼图
@@ -31,8 +31,6 @@ view.addSubview(pie)
 let line1 = ShineLine.init(color: .black,source: [0.2,0.4,0.6,0.2,0.8,0.7])
 
 let line2 = ShineLine.init(color: .red,source: [0.3,0.2,0.8,0.5,0.6,0.9])
-
-
 
 let bar = ShineLineChart.init(frame: CGRect.init(x: 0, y: 250, width: 375, height: 150), xItems: ["1","2","3","4","5","6"])
 
