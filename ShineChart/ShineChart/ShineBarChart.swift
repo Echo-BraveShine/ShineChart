@@ -8,13 +8,13 @@
 
 import UIKit
 
-struct ShineBar {
+public struct ShineBar {
     
     var color : UIColor
     
     var value : CGFloat
     
-    init(color: UIColor = .gray, value: CGFloat = 0) {
+    public init(color: UIColor = .gray, value: CGFloat = 0) {
         
         self.color = color
         
@@ -23,10 +23,10 @@ struct ShineBar {
     
 }
 
-class ShineBarChart: ShineBaseChart {
+public class ShineBarChart: ShineBaseChart {
     
     /// 柱状图集合
-    var bars : [ShineBar] = []
+    public var bars : [ShineBar] = []
     
     override func createLayer() {
         if bars.count == 0 {
@@ -74,7 +74,7 @@ class ShineBarChart: ShineBaseChart {
         
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         showXUnit = false
         super.layoutSubviews()
     }

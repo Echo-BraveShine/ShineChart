@@ -11,7 +11,7 @@ import UIKit
 
 let ShinePI = CGFloat(Double.pi*2)
 /// 扇形的配置
-struct ShinePieItem {
+public struct ShinePieItem {
     
     var color = UIColor.clear
     
@@ -19,38 +19,38 @@ struct ShinePieItem {
     
     var title : String = ""
     
-    init(color: UIColor,value: CGFloat,title : String? = nil) {
+    public init(color: UIColor,value: CGFloat,title : String? = nil) {
         self.color = color
         self.value = value
         self.title = title ?? ""
     }
 }
 
-class ShinePieChart: UIView {
+public class ShinePieChart: UIView {
     
     
     /// 中间圆的半径
-    var ringRadius : CGFloat = 0
+    public var ringRadius : CGFloat = 0
     
     /// 扇形集合
-    var items : [ShinePieItem] = []
+    public var items : [ShinePieItem] = []
     
     /// 动画时长，不设置即无动画
-    var duration : CGFloat?
+    public var duration : CGFloat?
     
     /// 起始绘制方向 x轴正向为0  x轴负向为整数0.5 y轴正向为0.75 y轴负向为0.25
-    var startAngle : CGFloat = 0
+    public var startAngle : CGFloat = 0
     
     /// 是否显示描述
-    var showDescription : Bool = true
+    public var showDescription : Bool = true
     
     /// 描述字体
-    var font : UIFont = UIFont.systemFont(ofSize: 14)
+    public var font : UIFont = UIFont.systemFont(ofSize: 14)
     
     /// number格式化
-    var format : String = "%.2f"
+    public var format : String = "%.2f"
     
-    var textColor : UIColor = UIColor.white
+    public var textColor : UIColor = UIColor.white
     init(frame: CGRect,items:[ShinePieItem]) {
         super.init(frame: frame)
         
@@ -58,7 +58,7 @@ class ShinePieChart: UIView {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -164,7 +164,7 @@ class ShinePieChart: UIView {
     }
 
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         drawPie()
     }

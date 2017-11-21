@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ShineLine {
+public struct ShineLine {
     
     /// 线的颜色
     var color : UIColor
@@ -25,7 +25,7 @@ struct ShineLine {
     /// 节点半径
     var nodeRadius : CGFloat
     
-    init(color: UIColor = .black, source: [CGFloat] = [],lineWidth: CGFloat = 1,nodeColor: UIColor? = nil,nodeRadius: CGFloat = 2) {
+    public init(color: UIColor = .black, source: [CGFloat] = [],lineWidth: CGFloat = 1,nodeColor: UIColor? = nil,nodeRadius: CGFloat = 2) {
         
         
         self.color = color
@@ -42,7 +42,7 @@ struct ShineLine {
     }
 }
 
-class ShineLineChart: ShineBaseChart {
+public class ShineLineChart: ShineBaseChart {
     
     /// 折线图样式
     ///
@@ -51,19 +51,19 @@ class ShineLineChart: ShineBaseChart {
     /// - ring: 节点为圆环
     /// - line: 折线图
     /// - scatter: 散点图
-    enum ShineLineStyle {
-        enum Line {
+    public enum ShineLineStyle {
+        public enum LineNode {
             case none,dot,ring
         }
-        case line(type: Line)
+        case line(type: LineNode)
         case scatter
     }
     
     /// 折线图样式
-    var style : ShineLineStyle = .line(type: .none)
+    public var style : ShineLineStyle = .line(type: .none)
     
     /// 折线图多条线集合
-    var lines : [ShineLine] = []
+    public var lines : [ShineLine] = []
     
     
     override func createLayer() {
@@ -127,7 +127,7 @@ class ShineLineChart: ShineBaseChart {
     }
     
     /// 画折线图
-    func createLine(type : ShineLineStyle.Line)  {
+    func createLine(type : ShineLineStyle.LineNode)  {
         
         let contentH = (self.bounds.size.height - 2 * margin - xStepHeight - beyondLength)
         
