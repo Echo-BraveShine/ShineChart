@@ -12,6 +12,7 @@
 		5F8E33BC1FBC7BDC00062B0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E33BA1FBC7BDC00062B0F /* Main.storyboard */; };
 		5F8E33BE1FBC7BDC00062B0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E33BD1FBC7BDC00062B0F /* Assets.xcassets */; };
 		5F8E33C11FBC7BDC00062B0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F8E33BF1FBC7BDC00062B0F /* LaunchScreen.storyboard */; };
+		5FB733811FC46F02004A285C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB733801FC46F02004A285C /* DetailViewController.swift */; };
 		5FF168021FC2669D008CE219 /* ShinePieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF168011FC2669D008CE219 /* ShinePieChart.swift */; };
 		5FF168041FC303BD008CE219 /* ShineLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF168031FC303BD008CE219 /* ShineLineChart.swift */; };
 		5FF168061FC30707008CE219 /* ShineBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF168051FC30707008CE219 /* ShineBarChart.swift */; };
@@ -26,6 +27,7 @@
 		5F8E33BD1FBC7BDC00062B0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F8E33C01FBC7BDC00062B0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F8E33C21FBC7BDC00062B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FB733801FC46F02004A285C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5FF168011FC2669D008CE219 /* ShinePieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShinePieChart.swift; sourceTree = "<group>"; };
 		5FF168031FC303BD008CE219 /* ShineLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShineLineChart.swift; sourceTree = "<group>"; };
 		5FF168051FC30707008CE219 /* ShineBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShineBarChart.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				5F8E33C81FBC7F3E00062B0F /* ShineChart */,
 				5F8E33B61FBC7BDC00062B0F /* AppDelegate.swift */,
 				5F8E33B81FBC7BDC00062B0F /* ViewController.swift */,
+				5FB733801FC46F02004A285C /* DetailViewController.swift */,
 				5F8E33BA1FBC7BDC00062B0F /* Main.storyboard */,
 				5F8E33BD1FBC7BDC00062B0F /* Assets.xcassets */,
 				5F8E33BF1FBC7BDC00062B0F /* LaunchScreen.storyboard */,
@@ -170,6 +173,7 @@
 				5FF168061FC30707008CE219 /* ShineBarChart.swift in Sources */,
 				5FF168021FC2669D008CE219 /* ShinePieChart.swift in Sources */,
 				5FF168081FC31E16008CE219 /* ShineBaseChart.swift in Sources */,
+				5FB733811FC46F02004A285C /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

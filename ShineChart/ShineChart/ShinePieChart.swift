@@ -47,6 +47,9 @@ class ShinePieChart: UIView {
     /// 描述字体
     var font : UIFont = UIFont.systemFont(ofSize: 14)
     
+    /// number格式化
+    var format : String = "%.2f"
+    
     var textColor : UIColor = UIColor.white
     init(frame: CGRect,items:[ShinePieItem]) {
         super.init(frame: frame)
@@ -91,7 +94,6 @@ class ShinePieChart: UIView {
             
             let ringWidth  = (radius - ringRadius)
             
-            
             let shaperLayer = createLayer(arcCenter: center, radius: radius - ringWidth/2, startAngle: startAngle*ShinePI, endAngle: endAngle*ShinePI, lineWidth: ringWidth, fillColor: .clear, strokColor: item.color)
             prentLayer.addSublayer(shaperLayer)
         
@@ -115,8 +117,8 @@ class ShinePieChart: UIView {
     
     func createLayer(arcCenter center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat,lineWidth:CGFloat,fillColor: UIColor,strokColor: UIColor)-> CAShapeLayer {
         let lay = CAShapeLayer()
-        let patch = UIBezierPath.init(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
-        lay.path = patch.cgPath
+        let path = UIBezierPath.init(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        lay.path = path.cgPath
         lay.fillColor = fillColor.cgColor
         lay.strokeColor = strokColor.cgColor
         lay.lineWidth = lineWidth
@@ -136,7 +138,7 @@ class ShinePieChart: UIView {
         
         let label = CATextLayer() //UILabel.init(frame: CGRect.init(x: 0, y: 0, width: space, height: 100))
         
-        let text = String(format: "%.2f", (endAngle - startAngle)*100) + "\n"  +  item.title
+        let text = String(format: format, (endAngle - startAngle)*100) + "\n"  +  item.title
         
 //        label.text = String(format: "%.2f", (endAngle - startAngle)*100) + "\n"  +  item.title
         let string = NSAttributedString.init(string: text, attributes:[NSAttributedStringKey.foregroundColor:self.textColor,NSAttributedStringKey.font:self.font])

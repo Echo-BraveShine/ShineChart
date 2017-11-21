@@ -8,19 +8,69 @@
 
 import UIKit
 
-class ShineBarItem : ShineBaseItem {
-    init(color: UIColor,value: CGFloat,title : String? = nil) {
-        super.init()
+struct ShineBar {
+    
+    var color : UIColor
+    
+    var value : CGFloat
+    
+    init(color: UIColor = .gray, value: CGFloat = 0) {
+        
         self.color = color
+        
         self.value = value
-        self.title = title ?? ""
     }
-  
+    
 }
 
 class ShineBarChart: ShineBaseChart {
     
+    /// 柱状图集合
+    var bars : [ShineBar] = []
+    
     override func createLayer() {
+        if bars.count == 0 {
+            return
+        }
+        let contentH = (self.bounds.size.height - 2 * margin - xStepHeight - beyondLength)
+
+        let xShaft : CGFloat = self.bounds.size.height - margin - xStepHeight - shaftWidth
+
+        for (index,item) in bars.enumerated() {
+            
+            if index >= xUnits.count {
+                return
+            }
+
+            let y = (maxValue - item.value)/maxValue  *  contentH + margin + beyondLength
+
+            let path = UIBezierPath()
+            
+            path.move(to: CGPoint.init(x: xUnits[index], y: xShaft))
+            path.addLine(to: CGPoint.init(x: xUnits[index], y: y))
+            path.lineWidth = 10
+            
+            let lay = CAShapeLayer()
+            lay.path = path.cgPath
+            lay.lineWidth = itemWidth
+            lay.strokeColor = item.color.cgColor
+            lay.lineCap = kCALineCapButt
+            self.layer.addSublayer(lay)
+            
+            if duration != nil{
+                let animation = CABasicAnimation(keyPath: "strokeEnd")
+                animation.fromValue = 0
+                animation.toValue = 1
+                animation.isRemovedOnCompletion = false
+                animation.fillMode = kCAFillModeForwards
+                animation.duration = CFTimeInterval(self.duration!)
+                animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                
+                lay.add(animation, forKey: "")
+                
+            }
+        }
+        
         
     }
     
