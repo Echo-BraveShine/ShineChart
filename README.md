@@ -4,6 +4,11 @@
 
 <img width="375" height="812" src="http://g.recordit.co/QwgYcD6hJd.gif"/>
 
+### 安装ShineHud
+通过cocoapods安装
+```ruby
+pod 'ShineChart'
+```
 
 ### 饼图
 ```swift
