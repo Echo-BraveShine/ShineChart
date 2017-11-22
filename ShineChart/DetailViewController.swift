@@ -141,11 +141,7 @@ class DetailViewController: UIViewController {
         
         let bar1 = ShineBar.init(color: .green, value: [0.5,0.3,0.5,0.9,0.7,0.1,0.4])
         let bar2 = ShineBar.init(color: .red, value: [0.2,0.4,0.3,0.7,0.6,0.5,0.8])
-//        let bar3 = ShineBar.init(color: .black, value: 0.3)
-//        let bar4 = ShineBar.init(color: .purple, value: 0.1)
-//        let bar5 = ShineBar.init(color: .cyan, value: 0.9)
-//        let bar6 = ShineBar.init(color: .yellow, value: 0.4)
-        
+
         let bar = ShineBarChart.init(frame: CGRect.init(x: 0, y: 350, width: 375, height: 200), xItems: ["1","2","3","4","5","6"])
         
         bar.maxValue = 1 //y轴最大值
