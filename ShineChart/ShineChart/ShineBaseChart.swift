@@ -32,6 +32,12 @@ public class ShineBaseChart: UIView {
     /// 坐标轴因为箭头的存在增加的超出部分长度
     public var beyondLength : CGFloat = 20
     
+    /// x轴标题
+    public var xShaftTitle : String = ""
+    
+    /// y轴标题
+    public var yShaftTitle : String = ""
+    
     /// 边距
     public var margin : CGFloat = 10
     
@@ -152,30 +158,29 @@ public class ShineBaseChart: UIView {
         var xLabelX : CGFloat = xStart + xDistance/2
         
         xStart += xDistance/2
-        for item in xItems {
+        for (index,item) in xItems.enumerated() {
             
             xStart += (xDistance + itemWidth)
             
-            
-            let label = CATextLayer()
-            
-            let string = NSAttributedString.init(string: item, attributes:[NSAttributedStringKey.foregroundColor:self.xStepColor,NSAttributedStringKey.font:self.font])
-            
-            label.string = string
-            
-            label.isWrapped = true
-            
-            label.alignmentMode = kCAAlignmentCenter
-            
-            label.backgroundColor = xStepBgColor.cgColor
-            
-            label.frame = CGRect.init(x: xLabelX, y: xRectY, width: xDistance + itemWidth, height: xStepHeight)
+            let label = createTextLayer(frame: CGRect.init(x: xLabelX, y: xRectY, width: xDistance + itemWidth, height: xStepHeight), item: item,titleColor: self.xStepColor,BgColor: self.xStepBgColor)
             
             self.layer.addSublayer(label)
             
             xUnits.append(label.frame.origin.x + label.frame.size.width/2)
             
             xLabelX += xLabelWidth
+
+            
+            ///绘制x轴标题
+            if index == xItems.count - 1{
+                
+                let label = createTextLayer(frame: CGRect.init(x: xLabelX , y: xRectY, width: beyondLength, height: xStepHeight), item: xShaftTitle,titleColor: self.xStepColor,BgColor: self.xStepBgColor)
+
+                self.layer.addSublayer(label)
+            }
+            
+            
+
             
             if showXUnit == true{
                 let unitLayer = CALayer()
@@ -184,7 +189,6 @@ public class ShineBaseChart: UIView {
                 self.layer.addSublayer(unitLayer)
             }
             
-            
         }
 
         if beyondLength != 0{
@@ -192,7 +196,6 @@ public class ShineBaseChart: UIView {
         }
         
         xShaft.addLine(to: CGPoint.init(x:xStart, y: xRectY))
-
         
         xshaftLayer.path = xShaft.cgPath
         xshaftLayer.lineWidth = shaftWidth
@@ -224,27 +227,27 @@ public class ShineBaseChart: UIView {
                 }
             }
             
-            let label = CATextLayer()
-            
+
             let currenValue = ySpace * CGFloat(index)
-            
+
             let text = String(format: format,currenValue + minValue)
-            
-            let string = NSAttributedString.init(string: text, attributes:[NSAttributedStringKey.foregroundColor:self.yStepColor,NSAttributedStringKey.font:self.font])
-            
+
             let yLabelHeight = getHeight(str: text, width: yStepWidth)
+
             
-            label.string = string
-            
-            label.isWrapped = true
-            
-            label.alignmentMode = kCAAlignmentCenter
-            
-            label.backgroundColor = yStepBgColor.cgColor
-            
-            label.frame = CGRect.init(x: margin, y: yStart - yLabelHeight/2, width: yStepWidth, height: yLabelHeight)
+        
+            let label = createTextLayer(frame: CGRect.init(x: margin, y: yStart - yLabelHeight/2, width: yStepWidth, height: yLabelHeight), item: text, titleColor: self.yStepColor, BgColor: self.yStepBgColor)
             
             self.layer.addSublayer(label)
+            
+            ///绘制y轴标题
+            if index == yItemCount {
+                
+                let label = createTextLayer(frame: CGRect.init(x: margin, y: yStart - beyondLength, width: yStepWidth, height: beyondLength - yLabelHeight/2), item: yShaftTitle, titleColor: self.yStepColor, BgColor: self.yStepBgColor)
+
+                self.layer.addSublayer(label)
+            }
+            
         }
 
         if  beyondLength != 0 {
@@ -259,11 +262,37 @@ public class ShineBaseChart: UIView {
         self.layer.addSublayer(yShaftLayer)
         
         
-        
         if self.shaftStyle == .arrow {
             createShaftArraw(xStart: xStart, xRectY: xRectY, yRectx: yRectx, yStart: yStart)
         }
         
+    }
+    
+    
+    /// 创建文本CATextLayer
+    ///
+    /// - Parameters:
+    ///   - frame: frame
+    ///   - item: 文本
+    ///   - titleColor: 字体颜色
+    ///   - BgColor: 背景颜色
+    /// - Returns: CATextLayer
+    func createTextLayer(frame: CGRect,item : String,titleColor:UIColor,BgColor : UIColor) -> CATextLayer {
+        let label = CATextLayer()
+        
+        let string = NSAttributedString.init(string: item, attributes:[NSAttributedStringKey.foregroundColor:titleColor,NSAttributedStringKey.font:self.font])
+        
+        label.string = string
+        
+        label.isWrapped = true
+        
+        label.alignmentMode = kCAAlignmentCenter
+        
+        label.backgroundColor = BgColor.cgColor
+        
+        label.frame = frame
+        
+        return label
     }
     
     

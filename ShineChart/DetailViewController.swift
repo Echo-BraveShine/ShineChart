@@ -25,7 +25,6 @@ class DetailViewController: UIViewController {
             lineChart2()
             lineChart3()
             lineChart4()
-
             break
         case .bar:
             barChart()
@@ -39,12 +38,9 @@ class DetailViewController: UIViewController {
 
     func lineChart1()  {
         
-        
         let line1 = ShineLine.init(color: .black,source: [0.2,0.4,0.6,0.2,0.8,0.7])
         
         let line2 = ShineLine.init(color: .red,source: [0.3,0.2,0.8,0.5,0.6,0.9])
-        
-        
         
         let bar = ShineLineChart.init(frame: CGRect.init(x: 0, y: 90, width: 375, height: 150), xItems: ["1","2","3","4","5","6"])
         
@@ -60,6 +56,9 @@ class DetailViewController: UIViewController {
         
         bar.shaftStyle = .arrow
         
+        bar.xShaftTitle = "X"
+        bar.yShaftTitle = "Y"
+//        bar.xStepBgColor = UIColor.blue
         
         self.view.addSubview(bar)
         
@@ -67,12 +66,9 @@ class DetailViewController: UIViewController {
     }
     func lineChart2()  {
         
-        
         let line1 = ShineLine.init(color: .black,source: [0.2,0.4,0.6,0.2,0.8,0.7])
         
         let line2 = ShineLine.init(color: .red,source: [0.3,0.2,0.8,0.5,0.6,0.9])
-        
-        
         
         let bar = ShineLineChart.init(frame: CGRect.init(x: 0, y: 250, width: 375, height: 150), xItems: ["1","2","3","4","5","6"])
         
@@ -99,8 +95,6 @@ class DetailViewController: UIViewController {
         
         let line2 = ShineLine.init(color: .red,source: [0.3,0.2,0.8,0.5,0.6,0.9])
         
-        
-        
         let bar = ShineLineChart.init(frame: CGRect.init(x: 0, y: 420, width: 375, height: 150), xItems: ["1","2","3","4","5","6"])
         
         bar.maxValue = 1
@@ -112,7 +106,6 @@ class DetailViewController: UIViewController {
         bar.duration = 2
         
         bar.style = .line(type: .dot)
-        
         
         self.view.addSubview(bar)
         
@@ -126,8 +119,6 @@ class DetailViewController: UIViewController {
         
         let line2 = ShineLine.init(color: .red,source: [0.3,0.2,0.8,0.5,0.6,0.9])
         
-        
-        
         let bar = ShineLineChart.init(frame: CGRect.init(x: 0, y: 580, width: 375, height: 150), xItems: ["1","2","3","4","5","6"])
         
         bar.maxValue = 1
@@ -139,7 +130,6 @@ class DetailViewController: UIViewController {
         bar.duration = 2
         
         bar.style = .line(type: .ring)
-        
         
         self.view.addSubview(bar)
         
@@ -165,6 +155,10 @@ class DetailViewController: UIViewController {
         bar.bars = [bar1,bar2,bar3,bar4,bar5,bar6]
         
         bar.duration = -2
+        
+        bar.xShaftTitle = "X"
+        
+        bar.yShaftTitle = "Y"
         
         bar.center = self.view.center
         
