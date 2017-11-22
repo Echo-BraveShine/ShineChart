@@ -97,7 +97,7 @@ public class ShineLineChart: ShineBaseChart {
     
     func createScatter()  {
         let contentH = (self.bounds.size.height - 2 * margin - xStepHeight - beyondLength)
-
+        
         for line in lines {
             
             for (index,item) in line.source.enumerated() {
@@ -155,21 +155,21 @@ public class ShineLineChart: ShineBaseChart {
                     
                     
                     if type != .none {
-                                                
+                        
                         let dotLayer = CAShapeLayer()
                         let dotpath : UIBezierPath = UIBezierPath.init(arcCenter: point, radius: line.nodeRadius, startAngle: 0, endAngle: CGFloat(Double.pi * 2.0), clockwise: true)
                         
                         dotLayer.path = dotpath.cgPath
                         dotLayer.strokeColor = line.nodeColor.cgColor
-
+                        
                         if type == .ring {
                             dotLayer.lineWidth = line.nodeRadius/2
                             dotLayer.fillColor = (self.backgroundColor ?? .white).cgColor
-
+                            
                         }else{
                             dotLayer.lineWidth = line.nodeRadius
                             dotLayer.fillColor = line.nodeColor.cgColor
-
+                            
                         }
                         
                         dotLayer.lineCap = kCALineCapButt

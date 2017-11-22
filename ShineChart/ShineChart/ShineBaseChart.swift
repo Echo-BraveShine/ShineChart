@@ -9,7 +9,7 @@
 import UIKit
 
 public class ShineBaseChart: UIView {
-
+    
     /// 坐标轴样式
     ///
     /// - normal: 默认样式
@@ -18,6 +18,7 @@ public class ShineBaseChart: UIView {
         case normal,arrow
     }
     
+    /// 坐标轴样式
     public var shaftStyle : ShaftStyle = .normal
     
     /// 动画时长，不设置即无动画
@@ -54,11 +55,11 @@ public class ShineBaseChart: UIView {
     public var yDistance : CGFloat = 20
     
     /// y轴坐标点数据源
-//    private var yItems : [CGFloat] = []
+    //    private var yItems : [CGFloat] = []
     
     /// y走坐标点差值
     private var ySpace : CGFloat = 0
-
+    
     /// y轴坐标点个数 等于yItems.count
     public var yItemCount : Int = 5
     
@@ -98,9 +99,9 @@ public class ShineBaseChart: UIView {
     /// x轴坐标点集合
     public var xUnits : [CGFloat] = []
     
-//    /// y轴坐标点集合
-//    public var yUnits : [CGFloat:CGFloat] = [:]
-
+    //    /// y轴坐标点集合
+    //    public var yUnits : [CGFloat:CGFloat] = [:]
+    
     /// 最大值
     public var maxValue : CGFloat = 0
     
@@ -169,18 +170,18 @@ public class ShineBaseChart: UIView {
             xUnits.append(label.frame.origin.x + label.frame.size.width/2)
             
             xLabelX += xLabelWidth
-
+            
             
             ///绘制x轴标题
             if index == xItems.count - 1 && xShaftTitle.count != 0{
                 
                 let label = createTextLayer(frame: CGRect.init(x: xLabelX , y: xRectY, width: beyondLength, height: xStepHeight), item: xShaftTitle,titleColor: self.xStepColor,BgColor: self.xStepBgColor)
-
+                
                 self.layer.addSublayer(label)
             }
             
             
-
+            
             
             if showXUnit == true{
                 let unitLayer = CALayer()
@@ -190,7 +191,7 @@ public class ShineBaseChart: UIView {
             }
             
         }
-
+        
         if beyondLength != 0{
             xStart+=beyondLength
         }
@@ -203,10 +204,10 @@ public class ShineBaseChart: UIView {
         xshaftLayer.lineCap = kCALineCapButt
         
         self.layer.addSublayer(xshaftLayer)
-
         
         
-      
+        
+        
         //MARK: y轴
         let yShaft = UIBezierPath()
         let yShaftLayer = CAShapeLayer()
@@ -227,15 +228,15 @@ public class ShineBaseChart: UIView {
                 }
             }
             
-
-            let currenValue = ySpace * CGFloat(index)
-
-            let text = String(format: format,currenValue + minValue)
-
-            let yLabelHeight = getHeight(str: text, width: yStepWidth)
-
             
-        
+            let currenValue = ySpace * CGFloat(index)
+            
+            let text = String(format: format,currenValue + minValue)
+            
+            let yLabelHeight = getHeight(str: text, width: yStepWidth)
+            
+            
+            
             let label = createTextLayer(frame: CGRect.init(x: margin, y: yStart - yLabelHeight/2, width: yStepWidth, height: yLabelHeight), item: text, titleColor: self.yStepColor, BgColor: self.yStepBgColor)
             
             self.layer.addSublayer(label)
@@ -244,17 +245,17 @@ public class ShineBaseChart: UIView {
             if index == yItemCount && yShaftTitle.count != 0 {
                 
                 let label = createTextLayer(frame: CGRect.init(x: margin, y: yStart - beyondLength, width: yStepWidth, height: beyondLength - yLabelHeight/2), item: yShaftTitle, titleColor: self.yStepColor, BgColor: self.yStepBgColor)
-
+                
                 self.layer.addSublayer(label)
             }
             
         }
-
+        
         if  beyondLength != 0 {
             yStart -= beyondLength
         }
         yShaft.addLine(to: CGPoint.init(x: yRectx, y: yStart))
-
+        
         yShaftLayer.path = yShaft.cgPath
         yShaftLayer.lineWidth = shaftWidth
         yShaftLayer.strokeColor = shaftColor.cgColor
@@ -375,5 +376,5 @@ public class ShineBaseChart: UIView {
         
         createLayer()
     }
-
+    
 }

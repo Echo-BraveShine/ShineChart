@@ -96,13 +96,13 @@ public class ShinePieChart: UIView {
             
             let shaperLayer = createLayer(arcCenter: center, radius: radius - ringWidth/2, startAngle: startAngle*ShinePI, endAngle: endAngle*ShinePI, lineWidth: ringWidth, fillColor: .clear, strokColor: item.color)
             prentLayer.addSublayer(shaperLayer)
-        
+            
             description(item: item, startAngle: startAngle, endAngle: endAngle,layer : shaperLayer)
             
             startAngle = endAngle
         }
         
-      
+        
         if duration != nil  {
             let animation = CABasicAnimation(keyPath: "strokeEnd")
             animation.fromValue = 0
@@ -128,7 +128,7 @@ public class ShinePieChart: UIView {
     
     
     func description(item:ShinePieItem,startAngle : CGFloat,endAngle: CGFloat,layer : CAShapeLayer)  {
-
+        
         let radius = min(self.frame.size.width/2, self.frame.size.height/2)
         
         /// 以x轴为0 所以要加 0.25pi
@@ -140,7 +140,7 @@ public class ShinePieChart: UIView {
         
         let text = String(format: format, (endAngle - startAngle)*100) + "\n"  +  item.title
         
-//        label.text = String(format: "%.2f", (endAngle - startAngle)*100) + "\n"  +  item.title
+        //        label.text = String(format: "%.2f", (endAngle - startAngle)*100) + "\n"  +  item.title
         let string = NSAttributedString.init(string: text, attributes:[NSAttributedStringKey.foregroundColor:self.textColor,NSAttributedStringKey.font:self.font])
         
         label.string = string
@@ -162,7 +162,7 @@ public class ShinePieChart: UIView {
         layer.addSublayer(label)
         
     }
-
+    
     
     override public func layoutSubviews() {
         super.layoutSubviews()

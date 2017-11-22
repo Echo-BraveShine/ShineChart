@@ -139,12 +139,12 @@ class DetailViewController: UIViewController {
     
     func barChart()  {
         
-        let bar1 = ShineBar.init(color: .green, value: 0.5)
-        let bar2 = ShineBar.init(color: .red, value: 0.8)
-        let bar3 = ShineBar.init(color: .black, value: 0.3)
-        let bar4 = ShineBar.init(color: .purple, value: 0.1)
-        let bar5 = ShineBar.init(color: .cyan, value: 0.9)
-        let bar6 = ShineBar.init(color: .yellow, value: 0.4)
+        let bar1 = ShineBar.init(color: .green, value: [0.5,0.3,0.5,0.9,0.7,0.1,0.4])
+        let bar2 = ShineBar.init(color: .red, value: [0.2,0.4,0.3,0.7,0.6,0.5,0.8])
+//        let bar3 = ShineBar.init(color: .black, value: 0.3)
+//        let bar4 = ShineBar.init(color: .purple, value: 0.1)
+//        let bar5 = ShineBar.init(color: .cyan, value: 0.9)
+//        let bar6 = ShineBar.init(color: .yellow, value: 0.4)
         
         let bar = ShineBarChart.init(frame: CGRect.init(x: 0, y: 350, width: 375, height: 200), xItems: ["1","2","3","4","5","6"])
         
@@ -152,13 +152,15 @@ class DetailViewController: UIViewController {
         
         bar.yItemCount = 5 //y轴坐标点个数
         
-        bar.bars = [bar1,bar2,bar3,bar4,bar5,bar6]
+        bar.bars = [bar1,bar2]
         
-        bar.duration = -2
+        bar.duration = 2
         
         bar.xShaftTitle = "X"
         
         bar.yShaftTitle = "Y"
+        
+        bar.itemWidth = 40
         
         bar.center = self.view.center
         
