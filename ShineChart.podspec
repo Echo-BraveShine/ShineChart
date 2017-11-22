@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "ShineChart"
-  s.version      = "0.1.1"
+  s.version      = "1.0.0"
   s.summary      = "Swift 图表框架"
   s.description  = <<-DESC
       Swift4.0 轻量级图标框架,持续更新

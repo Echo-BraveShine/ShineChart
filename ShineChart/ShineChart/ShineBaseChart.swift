@@ -172,7 +172,7 @@ public class ShineBaseChart: UIView {
 
             
             ///绘制x轴标题
-            if index == xItems.count - 1{
+            if index == xItems.count - 1 && xShaftTitle.count != 0{
                 
                 let label = createTextLayer(frame: CGRect.init(x: xLabelX , y: xRectY, width: beyondLength, height: xStepHeight), item: xShaftTitle,titleColor: self.xStepColor,BgColor: self.xStepBgColor)
 
@@ -241,7 +241,7 @@ public class ShineBaseChart: UIView {
             self.layer.addSublayer(label)
             
             ///绘制y轴标题
-            if index == yItemCount {
+            if index == yItemCount && yShaftTitle.count != 0 {
                 
                 let label = createTextLayer(frame: CGRect.init(x: margin, y: yStart - beyondLength, width: yStepWidth, height: beyondLength - yLabelHeight/2), item: yShaftTitle, titleColor: self.yStepColor, BgColor: self.yStepBgColor)
 
