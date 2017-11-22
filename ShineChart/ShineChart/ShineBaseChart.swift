@@ -10,6 +10,16 @@ import UIKit
 
 public class ShineBaseChart: UIView {
 
+    /// 坐标轴样式
+    ///
+    /// - normal: 默认样式
+    /// - arrow: 终点带箭头样式
+    public enum ShaftStyle {
+        case normal,arrow
+    }
+    
+    public var shaftStyle : ShaftStyle = .normal
+    
     /// 动画时长，不设置即无动画
     public var duration : CGFloat?
     
@@ -82,8 +92,8 @@ public class ShineBaseChart: UIView {
     /// x轴坐标点集合
     public var xUnits : [CGFloat] = []
     
-    /// y轴坐标点集合
-    public var yUnits : [CGFloat:CGFloat] = [:]
+//    /// y轴坐标点集合
+//    public var yUnits : [CGFloat:CGFloat] = [:]
 
     /// 最大值
     public var maxValue : CGFloat = 0
@@ -92,7 +102,9 @@ public class ShineBaseChart: UIView {
     public var minValue : CGFloat = 0
     
     /// y轴格式化
-    public var format : String = "%.2f"
+    public var format : String = "%.1f"
+    
+    
     
     init(frame: CGRect, xItems : [String]) {
         super.init(frame: frame)
@@ -108,12 +120,9 @@ public class ShineBaseChart: UIView {
             self.backgroundColor = .white
         }
         
-       
-        
         if maxValue == 0 || yItemCount == 0{
             print("缺少Y轴最大值或者Y轴坐标点数量")
         }
-        
         
         ySpace = (maxValue - minValue)/CGFloat(yItemCount)
         
@@ -125,6 +134,7 @@ public class ShineBaseChart: UIView {
     
     
     
+    /// 绘制坐标系
     func createShaft()  {
         var xStart : CGFloat = margin + yStepWidth
         let xRectY : CGFloat = self.bounds.size.height - margin - xStepHeight
@@ -146,7 +156,6 @@ public class ShineBaseChart: UIView {
             
             xStart += (xDistance + itemWidth)
             
-            xShaft.addLine(to: CGPoint.init(x: xStart, y: xRectY))
             
             let label = CATextLayer()
             
@@ -177,11 +186,13 @@ public class ShineBaseChart: UIView {
             
             
         }
-        
+
         if beyondLength != 0{
             xStart+=beyondLength
-            xShaft.addLine(to: CGPoint.init(x:xStart, y: xRectY))
         }
+        
+        xShaft.addLine(to: CGPoint.init(x:xStart, y: xRectY))
+
         
         xshaftLayer.path = xShaft.cgPath
         xshaftLayer.lineWidth = shaftWidth
@@ -189,6 +200,9 @@ public class ShineBaseChart: UIView {
         xshaftLayer.lineCap = kCALineCapButt
         
         self.layer.addSublayer(xshaftLayer)
+
+        
+        
       
         //MARK: y轴
         let yShaft = UIBezierPath()
@@ -197,8 +211,8 @@ public class ShineBaseChart: UIView {
         
         
         for index in 1...yItemCount {
-            yStart -= yDistance
             
+            yStart -= yDistance
             
             if showYUnit == true{
                 if xDistance != 0 {
@@ -210,15 +224,11 @@ public class ShineBaseChart: UIView {
                 }
             }
             
-            
-            yShaft.addLine(to: CGPoint.init(x: yRectx, y: yStart))
-            
             let label = CATextLayer()
             
             let currenValue = ySpace * CGFloat(index)
             
             let text = String(format: format,currenValue + minValue)
-            
             
             let string = NSAttributedString.init(string: text, attributes:[NSAttributedStringKey.foregroundColor:self.yStepColor,NSAttributedStringKey.font:self.font])
             
@@ -235,45 +245,96 @@ public class ShineBaseChart: UIView {
             label.frame = CGRect.init(x: margin, y: yStart - yLabelHeight/2, width: yStepWidth, height: yLabelHeight)
             
             self.layer.addSublayer(label)
-            
-            yUnits[currenValue] = yStart
-            
         }
-        
+
         if  beyondLength != 0 {
             yStart -= beyondLength
-            yShaft.addLine(to: CGPoint.init(x: yRectx, y: yStart))
-
         }
-        
+        yShaft.addLine(to: CGPoint.init(x: yRectx, y: yStart))
+
         yShaftLayer.path = yShaft.cgPath
         yShaftLayer.lineWidth = shaftWidth
         yShaftLayer.strokeColor = shaftColor.cgColor
         yShaftLayer.lineCap = kCALineCapButt
-        
         self.layer.addSublayer(yShaftLayer)
         
         
+        
+        if self.shaftStyle == .arrow {
+            createShaftArraw(xStart: xStart, xRectY: xRectY, yRectx: yRectx, yStart: yStart)
+        }
+        
     }
     
-    func getHeight(str:String,width:CGFloat) -> CGFloat{
+    
+    /// 绘制箭头
+    ///
+    /// - Parameters:
+    ///   - xStart: x轴终点x
+    ///   - xRectY: x轴终点y
+    ///   - yRectx: y轴终点x
+    ///   - yStart: y轴终点y
+    func createShaftArraw(xStart : CGFloat,xRectY : CGFloat,yRectx : CGFloat,yStart: CGFloat)  {
+        let arrawWidth : CGFloat = 5
         
+        let xArrawPath = UIBezierPath()
+        
+        xArrawPath.move(to: CGPoint.init(x: xStart - arrawWidth, y: xRectY - arrawWidth))
+        
+        xArrawPath.addLine(to: CGPoint.init(x: xStart, y: xRectY))
+        
+        xArrawPath.addLine(to: CGPoint.init(x: xStart - arrawWidth, y: xRectY + arrawWidth))
+        
+        let xarrawLayer = CAShapeLayer()
+        
+        xarrawLayer.path = xArrawPath.cgPath
+        
+        xarrawLayer.lineWidth = shaftWidth
+        xarrawLayer.strokeColor = shaftColor.cgColor
+        
+        xarrawLayer.fillColor = UIColor.clear.cgColor
+        xarrawLayer.lineCap = kCALineCapButt
+        
+        self.layer.addSublayer(xarrawLayer)
+        
+        
+        let yArrawPath = UIBezierPath()
+        
+        yArrawPath.move(to: CGPoint.init(x: yRectx - arrawWidth, y: yStart + arrawWidth))
+        
+        yArrawPath.addLine(to: CGPoint.init(x: yRectx, y: yStart))
+        
+        yArrawPath.addLine(to: CGPoint.init(x: yRectx + arrawWidth, y: yStart + arrawWidth))
+        
+        let yarrawLayer = CAShapeLayer()
+        
+        yarrawLayer.path = yArrawPath.cgPath
+        
+        yarrawLayer.lineWidth = shaftWidth
+        yarrawLayer.strokeColor = shaftColor.cgColor
+        
+        yarrawLayer.fillColor = UIColor.clear.cgColor
+        yarrawLayer.lineCap = kCALineCapButt
+        
+        self.layer.addSublayer(yarrawLayer)
+    }
+    
+    /// 获取文本高度
+    ///
+    /// - Parameters:
+    ///   - str: 文本
+    ///   - width: 宽度
+    /// - Returns: 高度
+    func getHeight(str:String,width:CGFloat) -> CGFloat{
         let size = CGSize.init(width: width, height: 1000)
         let dict = [NSAttributedStringKey.foregroundColor:self.yStepColor,NSAttributedStringKey.font:self.font] as [NSAttributedStringKey : Any]
-        
         let newStr : NSString = str as NSString
-        
-       let rect = newStr.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dict, context: nil)
-        
+        let rect = newStr.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dict, context: nil)
         return rect.size.height
     }
     
-    func createLayer() {
-        
-    }
-    
-
-    
+    /// 进行数据绘制 交由子类实现
+    func createLayer() {}
     
     
     override public func layoutSubviews() {

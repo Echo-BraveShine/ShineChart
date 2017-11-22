@@ -58,6 +58,8 @@ class DetailViewController: UIViewController {
         
         bar.style = .scatter
         
+        bar.shaftStyle = .arrow
+        
         
         self.view.addSubview(bar)
         
@@ -82,7 +84,7 @@ class DetailViewController: UIViewController {
         
         bar.duration = 2
         
-        bar.style = .line(type: .none)
+        bar.style = .line(type: .normal)
         
         
         self.view.addSubview(bar)
@@ -156,13 +158,13 @@ class DetailViewController: UIViewController {
         
         let bar = ShineBarChart.init(frame: CGRect.init(x: 0, y: 350, width: 375, height: 200), xItems: ["1","2","3","4","5","6"])
         
-        bar.maxValue = 1
+        bar.maxValue = 1 //y轴最大值
         
-        bar.yItemCount = 5
+        bar.yItemCount = 5 //y轴坐标点个数
         
         bar.bars = [bar1,bar2,bar3,bar4,bar5,bar6]
         
-        bar.duration = 2
+        bar.duration = -2
         
         bar.center = self.view.center
         

@@ -46,21 +46,21 @@ public class ShineLineChart: ShineBaseChart {
     
     /// 折线图样式
     ///
-    /// - none: 默认样式
+    /// - normal: 默认样式
     /// - dot: 节点为圆点
     /// - ring: 节点为圆环
     /// - line: 折线图
     /// - scatter: 散点图
     public enum ShineLineStyle {
         public enum LineNode {
-            case none,dot,ring
+            case normal,dot,ring
         }
         case line(type: LineNode)
         case scatter
     }
     
     /// 折线图样式
-    public var style : ShineLineStyle = .line(type: .none)
+    public var style : ShineLineStyle = .line(type: .normal)
     
     /// 折线图多条线集合
     public var lines : [ShineLine] = []
@@ -89,7 +89,7 @@ public class ShineLineChart: ShineBaseChart {
             
             break
         default:
-            createLine(type: .none)
+            createLine(type: .normal)
             
         }
         
