@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// ShineBarChart SineLineChart 的父类 主要负责创建坐标系
 public class ShineBaseChart: UIView {
     
     /// 坐标轴样式
