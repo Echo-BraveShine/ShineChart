@@ -80,8 +80,9 @@ class DetailViewController: UIViewController {
         
         bar.duration = 2
         
-        bar.style = .line(type: .normal)
+        bar.style = .line
         
+        bar.node = .normal
         
         self.view.addSubview(bar)
         
@@ -105,7 +106,9 @@ class DetailViewController: UIViewController {
         
         bar.duration = 2
         
-        bar.style = .line(type: .dot)
+        bar.style = .line
+        
+        bar.node = .dot
         
         self.view.addSubview(bar)
         
@@ -129,7 +132,9 @@ class DetailViewController: UIViewController {
         
         bar.duration = 2
         
-        bar.style = .line(type: .ring)
+        bar.style = .line
+        
+        bar.node = .ring
         
         self.view.addSubview(bar)
         
