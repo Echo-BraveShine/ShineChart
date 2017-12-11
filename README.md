@@ -48,7 +48,8 @@ bar.lines = [line1,line2] //折线的集合
 bar.duration = 2 //动画时长
 
 ///通过切换style可获取更多样式，见demo
-bar.style = .line(type: .none)
+bar.style = .line
+bar.node = .normal
 
 self.view.addSubview(bar)
 ```
