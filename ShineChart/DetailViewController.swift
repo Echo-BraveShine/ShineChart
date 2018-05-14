@@ -162,6 +162,7 @@ class DetailViewController: UIViewController {
     func barChart()  {
         
         let bar1 = ShineBar.init(color: .green, value: [0.5,0.3,0.5,0.9,0.7,0.1])
+        
         let bar2 = ShineBar.init(color: .red, value: [0.2,0.4,0.3,0.7,0.6,0.5])
 
         let bar = ShineBarChart.init(frame: CGRect.init(x: 0, y: 350, width: 375, height: 200), xItems: ["1","2","3","4","5","6"])
@@ -190,6 +191,7 @@ class DetailViewController: UIViewController {
     @objc func reloadBarChart(chart : ShineBarChart)  {
         
         let bar1 = ShineBar.init(color: .green, value: [0.5,0.3,0.5,0.9,0.7])
+        
         let bar2 = ShineBar.init(color: .red, value: [0.2,0.4,0.3,0.7,0.6])
 
         chart.xItems = ["1","2","3","4","5"]
@@ -203,7 +205,9 @@ class DetailViewController: UIViewController {
     
     func pieChart()  {
         let item1 = ShinePieItem.init(color: .red, value: 0.7,title: "redcolor")
+        
         let item2 = ShinePieItem.init(color: .blue, value: 0.2,title: "bluecolor")
+        
         let item3 = ShinePieItem.init(color: .purple, value: 0.3,title: "purplecolor")
         
         let pie = ShinePieChart.init(frame: CGRect.init(x: 0, y: 100, width: 300, height: 200), items: [item1,item2,item3])
@@ -226,10 +230,11 @@ class DetailViewController: UIViewController {
     
     @objc func reloadPicChart(chart : ShinePieChart)  {
         let item1 = ShinePieItem.init(color: .red, value: 0.2,title: "redcolor")
+        
         let item2 = ShinePieItem.init(color: .blue, value: 0.5,title: "bluecolor")
-//        let item3 = ShinePieItem.init(color: .purple, value: 0.3,title: "purplecolor")
         
         chart.items = [item1,item2];
+        
         chart.reloadData();
     }
     

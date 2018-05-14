@@ -179,9 +179,10 @@ public class ShinePieChart: UIView {
         
     }
     
+    /// 设置更新数据
     func reloadData() {
         
-        if self.layer.sublayers != nil {
+        if self.layer.sublayers != nil {//删除旧的数据显示
             
             for sublayer in self.layer.sublayers! {
                 

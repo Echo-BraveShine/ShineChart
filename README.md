@@ -79,3 +79,14 @@ bar.center = self.view.center
 self.view.addSubview(bar)
 
 ```
+
+### 新增更新数据方法
+```swift
+let item1 = ShinePieItem.init(color: .red, value: 0.2,title: "redcolor")
+
+let item2 = ShinePieItem.init(color: .blue, value: 0.5,title: "bluecolor")
+
+chart.items = [item1,item2];
+
+chart.reloadData();//更新数据的方法
+```

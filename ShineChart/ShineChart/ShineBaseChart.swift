@@ -378,9 +378,10 @@ public class ShineBaseChart: UIView {
     func createLayer() {}
     
     
+    /// 设置更新数据
     func reloadData() {
         
-        if self.layer.sublayers != nil {
+        if self.layer.sublayers != nil {//删除旧的数据显示
             
             xUnits.removeAll()
             
