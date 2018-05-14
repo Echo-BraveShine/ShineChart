@@ -125,6 +125,7 @@ public class ShineBaseChart: UIView {
     func configuration() {
         
         if self.backgroundColor == nil{
+           
             self.backgroundColor = .white
         }
         
@@ -136,6 +137,7 @@ public class ShineBaseChart: UIView {
         
         ///默认x轴第一个拒远点为半个间距 所以除数+0.5
         xDistance = (self.bounds.size.width - beyondLength - itemWidth*(CGFloat(xItems.count)) - margin * 2 - yStepWidth) / (CGFloat(xItems.count) + 0.5)
+        
         yDistance = (self.bounds.size.height - beyondLength  - margin * 2 - xStepHeight) / (CGFloat(yItemCount))
         
     }
@@ -181,13 +183,13 @@ public class ShineBaseChart: UIView {
                 self.layer.addSublayer(label)
             }
             
-            
-            
-            
             if showXUnit == true{
                 let unitLayer = CALayer()
+                
                 unitLayer.frame = CGRect.init(x: xUnits.last!, y: xRectY - unitHeight, width: unitWidth, height: unitHeight)
+                
                 unitLayer.backgroundColor = shaftColor.cgColor
+                
                 self.layer.addSublayer(unitLayer)
             }
             
@@ -200,14 +202,14 @@ public class ShineBaseChart: UIView {
         xShaft.addLine(to: CGPoint.init(x:xStart, y: xRectY))
         
         xshaftLayer.path = xShaft.cgPath
+       
         xshaftLayer.lineWidth = shaftWidth
+        
         xshaftLayer.strokeColor = shaftColor.cgColor
+        
         xshaftLayer.lineCap = kCALineCapButt
         
         self.layer.addSublayer(xshaftLayer)
-        
-        
-        
         
         //MARK: y轴
         let yShaft = UIBezierPath()
@@ -221,8 +223,11 @@ public class ShineBaseChart: UIView {
             
             if showYUnit == true{
                 if xDistance != 0 {
+                   
                     let unitLayer = CALayer()
+                    
                     unitLayer.frame = CGRect.init(x: yRectx, y: yStart, width: unitHeight, height: unitWidth)
+                    
                     unitLayer.backgroundColor = shaftColor.cgColor
                     
                     self.layer.addSublayer(unitLayer)
@@ -357,10 +362,15 @@ public class ShineBaseChart: UIView {
     ///   - width: 宽度
     /// - Returns: 高度
     func getHeight(str:String,width:CGFloat) -> CGFloat{
+       
         let size = CGSize.init(width: width, height: 1000)
+        
         let dict = [NSAttributedStringKey.foregroundColor:self.yStepColor,NSAttributedStringKey.font:self.font] as [NSAttributedStringKey : Any]
+        
         let newStr : NSString = str as NSString
+        
         let rect = newStr.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dict, context: nil)
+        
         return rect.size.height
     }
     
@@ -368,8 +378,17 @@ public class ShineBaseChart: UIView {
     func createLayer() {}
     
     
-    override public func layoutSubviews() {
-        super.layoutSubviews()
+    func reloadData() {
+        
+        if self.layer.sublayers != nil {
+            
+            xUnits.removeAll()
+            
+            for sublayer in self.layer.sublayers! {
+                
+                sublayer .removeFromSuperlayer();
+            }
+        }
         
         configuration()
         
@@ -378,4 +397,9 @@ public class ShineBaseChart: UIView {
         createLayer()
     }
     
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        
+        reloadData()
+    }
 }

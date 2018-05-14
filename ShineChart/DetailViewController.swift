@@ -61,7 +61,9 @@ class DetailViewController: UIViewController {
 //        bar.xStepBgColor = UIColor.blue
         
         self.view.addSubview(bar)
-        
+       
+        perform(#selector(reloadLineChart(chart:)), with: bar, afterDelay: 3)
+
         
     }
     func lineChart2()  {
@@ -86,7 +88,8 @@ class DetailViewController: UIViewController {
         
         self.view.addSubview(bar)
         
-        
+        perform(#selector(reloadLineChart(chart:)), with: bar, afterDelay: 3)
+
     }
     
     func lineChart3()  {
@@ -112,7 +115,8 @@ class DetailViewController: UIViewController {
         
         self.view.addSubview(bar)
         
-        
+        perform(#selector(reloadLineChart(chart:)), with: bar, afterDelay: 3)
+
     }
     
     func lineChart4()  {
@@ -138,14 +142,27 @@ class DetailViewController: UIViewController {
         
         self.view.addSubview(bar)
         
+        perform(#selector(reloadLineChart(chart:)), with: bar, afterDelay: 3)
         
+    }
+    
+    @objc func reloadLineChart(chart : ShineLineChart)  {
+        let line1 = ShineLine.init(color: .black,source: [0.2,0.4,0.6,0.2,0.8])
+        
+        let line2 = ShineLine.init(color: .red,source: [0.3,0.2,0.8,0.5,0.6])
+        
+        chart.xItems = ["1","2","3","4","5"]
+        
+        chart.lines = [line1,line2];
+        
+        chart.reloadData()
     }
     
     
     func barChart()  {
         
-        let bar1 = ShineBar.init(color: .green, value: [0.5,0.3,0.5,0.9,0.7,0.1,0.4])
-        let bar2 = ShineBar.init(color: .red, value: [0.2,0.4,0.3,0.7,0.6,0.5,0.8])
+        let bar1 = ShineBar.init(color: .green, value: [0.5,0.3,0.5,0.9,0.7,0.1])
+        let bar2 = ShineBar.init(color: .red, value: [0.2,0.4,0.3,0.7,0.6,0.5])
 
         let bar = ShineBarChart.init(frame: CGRect.init(x: 0, y: 350, width: 375, height: 200), xItems: ["1","2","3","4","5","6"])
         
@@ -167,8 +184,22 @@ class DetailViewController: UIViewController {
         
         self.view.addSubview(bar)
         
-        
+        perform(#selector(reloadBarChart(chart:)), with: bar, afterDelay: 3)
+
     }
+    @objc func reloadBarChart(chart : ShineBarChart)  {
+        
+        let bar1 = ShineBar.init(color: .green, value: [0.5,0.3,0.5,0.9,0.7])
+        let bar2 = ShineBar.init(color: .red, value: [0.2,0.4,0.3,0.7,0.6])
+
+        chart.xItems = ["1","2","3","4","5"]
+        
+        chart.bars = [bar1,bar2]
+        
+        chart.reloadData()
+    }
+    
+    
     
     func pieChart()  {
         let item1 = ShinePieItem.init(color: .red, value: 0.7,title: "redcolor")
@@ -188,6 +219,18 @@ class DetailViewController: UIViewController {
         pie.center = self.view.center
         
         view.addSubview(pie)
+        
+        perform(#selector(reloadPicChart(chart:)), with: pie, afterDelay: 3)
+    }
+    
+    
+    @objc func reloadPicChart(chart : ShinePieChart)  {
+        let item1 = ShinePieItem.init(color: .red, value: 0.2,title: "redcolor")
+        let item2 = ShinePieItem.init(color: .blue, value: 0.5,title: "bluecolor")
+//        let item3 = ShinePieItem.init(color: .purple, value: 0.3,title: "purplecolor")
+        
+        chart.items = [item1,item2];
+        chart.reloadData();
     }
     
     deinit {

@@ -104,25 +104,41 @@ public class ShinePieChart: UIView {
         
         
         if duration != nil  {
+           
             let animation = CABasicAnimation(keyPath: "strokeEnd")
+            
             animation.fromValue = 0
+            
             animation.toValue = 1
+            
             animation.isRemovedOnCompletion = true
+            
             animation.duration = CFTimeInterval(self.duration!)
+            
             animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            
             prentLayer.mask?.add(animation, forKey: "")
         }
     }
     
     
-    func createLayer(arcCenter center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat,lineWidth:CGFloat,fillColor: UIColor,strokColor: UIColor)-> CAShapeLayer {
+    func createLayer(arcCenter center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle:
+        CGFloat,lineWidth:CGFloat,fillColor: UIColor,strokColor: UIColor)-> CAShapeLayer {
+       
         let lay = CAShapeLayer()
+        
         let path = UIBezierPath.init(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        
         lay.path = path.cgPath
+        
         lay.fillColor = fillColor.cgColor
+        
         lay.strokeColor = strokColor.cgColor
+        
         lay.lineWidth = lineWidth
+        
         lay.lineCap = kCALineCapButt
+        
         return lay
     }
     
@@ -163,10 +179,24 @@ public class ShinePieChart: UIView {
         
     }
     
+    func reloadData() {
+        
+        if self.layer.sublayers != nil {
+            
+            for sublayer in self.layer.sublayers! {
+                
+                sublayer .removeFromSuperlayer();
+            }
+        }
+        
+        drawPie()
+
+    }
     
     override public func layoutSubviews() {
         super.layoutSubviews()
-        drawPie()
+        
+        reloadData()
     }
     
 }

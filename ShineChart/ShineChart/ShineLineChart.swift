@@ -78,6 +78,7 @@ public class ShineLineChart: ShineBaseChart {
         if lines.count == 0 {
             return
         }
+       
         createLine()
     }
     
@@ -176,19 +177,24 @@ public class ShineLineChart: ShineBaseChart {
                 self.layer.addSublayer(lineLayer)
                 
                 if duration != nil{
+                    
                     let animation = CABasicAnimation(keyPath: "strokeEnd")
+                    
                     animation.fromValue = 0
+                    
                     animation.toValue = 1
+                    
                     animation.isRemovedOnCompletion = false
+                    
                     animation.fillMode = kCAFillModeForwards
+                    
                     animation.duration = CFTimeInterval(self.duration!)
+                    
                     animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                    
                     lineLayer.add(animation, forKey: "")
                 }
             }
-            
-            
-            
         }
     }
     
